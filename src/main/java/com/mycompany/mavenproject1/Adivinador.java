@@ -25,19 +25,30 @@ public class Adivinador {
     int a;
     public Adivinador(){
         Random rnd = new Random();
-        numCorrecto = (int) (rnd.nextDouble() * 10 + 100);
+        numCorrecto = (int) (rnd.nextDouble() * 1 + 10);
         numIntentos = 0;
-        premAcumulado= 0;
-        estadoJuego = "Su puntaje es de: ";
+        premAcumulado= 100000;
+        estadoJuego = "Su puntaje es de:    ";
         a=0;
     }
     public void reiniciar(){
         Random rnd = new Random();
-        numCorrecto = (int) (rnd.nextDouble() * 10 + 100);
+        numCorrecto = (int) (rnd.nextDouble() * 1 + 10);
         numIntentos = 0;
-        premAcumulado= 0;
+        premAcumulado= 100000;
     }
-    
+    public void adivinar(int nIntento){
+        numIntentos+=1;
+        if(premAcumulado >0){
+            if(this.numCorrecto!=nIntento){
+            premAcumulado-=10000;      
+            }else{
+                premAcumulado+=premAcumulado;
+            }
+        }else{
+            reiniciar();
+        }                
+    }
     public void setA(int num){
         this.a=num;
     }
